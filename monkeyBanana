@@ -1,0 +1,40 @@
+# Monkey and Banana Problem using State Space Search
+
+# Initial state
+state = ("door", "floor", "banana")
+
+# Goal state
+goal = ("box", "on_box", "banana_taken")
+
+# List to store the solution steps
+steps = []
+
+# Step 1: Monkey moves from door to box
+if state[0] != "box":
+    steps.append("Monkey moves to the box")
+    state = ("box", "floor", "banana")
+
+# Step 2: Monkey pushes the box under the banana
+if state[0] == "box":
+    steps.append("Monkey pushes the box under the banana")
+    state = ("banana", "floor", "banana")
+
+# Step 3: Monkey climbs on the box
+if state[0] == "banana":
+    steps.append("Monkey climbs on the box")
+    state = ("banana", "on_box", "banana")
+
+# Step 4: Monkey takes the banana
+if state[1] == "on_box":
+    steps.append("Monkey takes the banana")
+    state = ("banana", "on_box", "banana_taken")
+
+# Display solution
+print("Monkey and Banana Problem")
+print("-------------------------")
+
+for i, step in enumerate(steps, 1):
+    print("Step", i, ":", step)
+
+print("\nGoal State Reached!")
+print("Monkey has the banana.")
